@@ -6,35 +6,40 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latihan 1 PHP Dasar</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <form action="" method="post">
-    <label for="stringInput">Masukkan string:</label>
-    <input type="text" name="stringInput"><br>
-    <label for="loopNumber">Berapa banyak perulangan:</label>
-    <input type="number" name="loopNumber"><br>
-    <input type="submit" value="Submit">
-  </form>
+  <form method="post" class="input-form">
+    <input type="text" name="stringInput" class="input" placeholder="Masukkan string:"><br>
+    <input type="number" name="loopNumber" class="input" placeholder="Berapa banyak loop:"><br>
+    <input type="submit" value="Submit" class="button">
 
-  <?php
-    if ($_POST) {
+    <ul class="suggestions">
+      <?php
       $loopNumber = $_POST["loopNumber"];
       $stringInput = $_POST["stringInput"];
 
-      for ($i=1; $i <= $loopNumber; $i++) { 
-        printf("<p>%s %d</p>", $stringInput, $i);
-      }
+      if (!is_null($loopNumber) && !is_null($stringInput)) {
 
-      if ($loopNumber % 2 == 0) {
-        $jenisAngka = "Genap";
+        for ($i = 1; $i <= $loopNumber; $i++) {
+          printf("<li>%s %d</li>", $stringInput, $i);
+        }
+
+        if ($loopNumber % 2 == 0) {
+          $jenisAngka = "Genap";
+        } else {
+          $jenisAngka = "Ganjil";
+        }
+        printf("<li>%d merupakan Bilangan %s</li>", $loopNumber, $jenisAngka);
       }
-      else {
-        $jenisAngka = "Ganjil";
-      }
-      printf("<p>%d merupakan Bilangan %s</p>", $loopNumber, $jenisAngka);
-    }
-  ?>
+      ?>
+    </ul>
+  </form>
+
+</html>
+
+
 </body>
 
 </html>
